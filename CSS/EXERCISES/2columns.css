@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+}
+
+body {
+    padding: 4rem;
+    display: flex;
+    height: 80vh;
+    gap: 1rem;
+}
+
+aside {
+    border: solid black 1px;
+    background-color: lightgray;
+    flex: 1;
+}
+
+main {
+    border: solid black 1px;
+    flex: 3;
+}

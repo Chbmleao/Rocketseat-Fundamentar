@@ -1,0 +1,29 @@
+/* Element selector */
+h1 {
+    color: blue;
+    font-size: 60px;
+}
+
+p {
+    color: green;
+}
+
+/* ID selector */
+#title { 
+    color: orange;
+}
+
+/* Class selector */
+.red {
+    color: red;
+}
+
+/* Atribute selector */
+[title] {
+    color: aqua;
+}
+
+/* Pseudo-class selector */
+p:hover {
+    color: red;
+}
