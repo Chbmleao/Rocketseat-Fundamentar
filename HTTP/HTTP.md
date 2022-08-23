@@ -149,5 +149,160 @@ Pedidos são ações do cliente, que podem ser:
 - Headers
 - Status message
 
-## Methods
+## HTTP Methods
 
+- Define um conjunto de métodos HTTP
+- Indica a ação que o cliente deseja operar
+- Podem ser chamados de Verbos HTTP
+- Cada um possui a sua semântica
+
+- Características
+    - Seguro
+        - Não altera o estado do servidor
+        - Somente leitura
+        - Cliente não solicita alterações
+        - Não há carga extra para o servidor
+        - O servidor é responsável em manter o método seguro
+        - Quais são?
+            - GET   (GET/search.html HTTP/1.1)
+            - HEAD
+            - OPTIONS
+
+    - Idempotente
+        - Ao executar o método, a resposta deverá ser sempre a mesma
+        - Quais são?
+            - Todos os seguros são idempotentes
+            - PUT
+            - DELETE
+        - Status code poderá ser diferente
+        - O servidor tem a responsabilidade de retornar dados da mesma maneira
+        - Essa especificação não é garantia de que todos os servidores irão aplicar o conceito corretamente
+
+### OPTIONS
+
+- Informação sobre disponibilidade da requisição
+- Características
+    - Seguro: SIM
+    - Idempotente: SIM
+    - BODY 
+        - Request: NÃO
+        - Response: NÃO
+    - Uso em formulários HTML: NÃO
+    - Cacheable: NÃO
+
+### GET
+
+- Pegar um Recurso
+- Somente recebe dados
+- Características
+    - Seguro: SIM
+    - Idempotente: SIM
+    - BODY 
+        - Request: NÃO
+        - Response: SIM
+    - Uso em formulários HTML: SIM
+    - Cacheable: SIM
+
+### HEAD
+
+- Semelhante ao GET, porém recebemos somente o cabeçalho - HEAD/posts
+- Características
+    - Seguro: SIM
+    - Idempotente: SIM
+    - BODY 
+        - Request: NÃO
+        - Response: NÃO
+    - Uso em formulários HTML: NÃO
+    - Cacheable: SIM
+
+### POST
+
+- Publicar/Cadastrar um Recurso
+- Características
+    - Seguro: NÃO
+    - Idempotente: NÃO
+    - BODY 
+        - Request: SIM
+        - Response: SIM
+    - Uso em formulários HTML: SIM
+    - Cacheable: SIM
+
+### PUT
+
+- Cria um novo ou atualiza um Recurso (Geralmente atualiza)
+    - PUT /profile HTTP/1.1
+    - Criação -> Status code 201
+    - Atualização -> Status code 204 ou 200
+- Características
+    - Seguro: NÃO
+    - Idempotente: SIM
+    - BODY 
+        - Request: SIM
+        - Response: NÃO
+    - Uso em formulários HTML: NÃO
+    - Cacheable: NÃO
+
+### PATCH
+
+- Modificação parcial de um recurso
+    - Diferença entre o PUT? Geralmente altera apenas uma parte do Recurso
+- Características
+    - Seguro: NÃO
+    - Idempotente: NÃO
+    - BODY 
+        - Request: SIM
+        - Response: SIM
+    - Uso em formulários HTML: NÃO
+    - Cacheable: NÃO
+
+### DELETE
+
+- Remover um Recurso
+- Status code
+    - 202: Accepted
+    - 204: No content
+    - 200: OK
+- Características
+    - Seguro: NÃO
+    - Idempotente: SIM
+    - BODY 
+        - Request: POSSIBILIDADE
+        - Response: POSSIBILIDADE
+    - Uso em formulários HTML: NÃO
+    - Cacheable: NÃO
+
+## HEADERS
+
+- Cabeçalhos
+- Informações adicionais para o pedido ou resposta
+- Nome: valor
+    - content-type: application/json
+    - Content-Type: text/html
+
+## Status
+
+- 100
+    - 100: Continue
+
+- 200
+    - 200: OK (GET, POST)
+    - 201: Created (PUT)
+    - 204: No content (DELETE, PUT)
+
+- 300
+    - 301: Moved Permanently
+    - 308: Permanet Redirect
+    - 302: Found
+    - 307: Temporary Redirect
+
+- 400 
+    - 400: Bad Request
+    - 401: Unauthorized
+    - 403: Forbidden
+    - 404: Not found
+    - 405: Method not Allowed
+    - 429: Too Many Requests
+
+- 500
+    - 500: Internal Server Error
+    - 503: Service Unavailable
